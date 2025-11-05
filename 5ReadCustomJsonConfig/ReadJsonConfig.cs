@@ -34,19 +34,10 @@ public record ModMetadata : AbstractModMetadata
 
 // We want to load after PreSptModLoader is complete, so we set our type priority to that, plus 1.
 [Injectable(TypePriority = OnLoadOrder.PreSptModLoader + 1)]
-public class ReadJsonConfig : IOnLoad // Implement the IOnLoad interface so that this mod can do something
-{
-    private readonly ISptLogger<ReadJsonConfig> _logger;
-    private readonly ModHelper _modHelper;
-
-    public ReadJsonConfig(
+public class ReadJsonConfig(
         ISptLogger<ReadJsonConfig> logger,
-        ModHelper modHelper)
-    {
-        _logger = logger;
-        _modHelper = modHelper;
-    }
-
+        ModHelper modHelper) : IOnLoad // Implement the IOnLoad interface so that this mod can do something
+{
     /// <summary>
     /// This is called when this class is loaded, the order in which its loaded is set according to the type priority
     /// on the [Injectable] attribute on this class. Each class can then be used as an entry point to do
@@ -55,12 +46,12 @@ public class ReadJsonConfig : IOnLoad // Implement the IOnLoad interface so that
     public Task OnLoad()
     {
         // This will get us the full path to the mod, e.g. C:\spt\user\mods\5ReadCustomJsonConfig-0.0.1
-        var pathToMod = _modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
+        var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
 
         // We give the path to the mod folder and the file we want to get, giving us the config, supply the files 'type' between the diamond brackets
-        var config = _modHelper.GetJsonDataFromFile<ModConfig>(pathToMod, "config.json");
+        var config = modHelper.GetJsonDataFromFile<ModConfig>(pathToMod, "config.json");
 
-        _logger.Success($"Read property: 'ExampleProperty' from config with value: {config.ExampleProperty}");
+        logger.Success($"Read property: 'ExampleProperty' from config with value: {config.ExampleProperty}");
 
         // Return a completed task
         return Task.CompletedTask;
