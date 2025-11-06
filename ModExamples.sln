@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02EditDatabase", "2EditData
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03EditSptConfig", "3EditSptConfig\03EditSptConfig.csproj", "{CE1A0F24-D1CB-4E12-8462-13641A7FB964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04ReadCustomJson5Config", "4ReadCustomJson5Config\04ReadCustomJson5Config.csproj", "{CEFCC99D-C0C7-4894-93D9-3B6F3BAFD92F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05ReadCustomJsonConfig", "5ReadCustomJsonConfig\05ReadCustomJsonConfig.csproj", "{00CE855D-299F-4700-84C2-0567060593DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06OverrideMethod", "6OverrideMethod\06OverrideMethod.csproj", "{494C6DB5-EAD2-4DCA-871A-34675D2452DE}"
@@ -71,10 +69,6 @@ Global
 		{CE1A0F24-D1CB-4E12-8462-13641A7FB964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE1A0F24-D1CB-4E12-8462-13641A7FB964}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE1A0F24-D1CB-4E12-8462-13641A7FB964}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CEFCC99D-C0C7-4894-93D9-3B6F3BAFD92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEFCC99D-C0C7-4894-93D9-3B6F3BAFD92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CEFCC99D-C0C7-4894-93D9-3B6F3BAFD92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CEFCC99D-C0C7-4894-93D9-3B6F3BAFD92F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00CE855D-299F-4700-84C2-0567060593DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00CE855D-299F-4700-84C2-0567060593DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00CE855D-299F-4700-84C2-0567060593DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
