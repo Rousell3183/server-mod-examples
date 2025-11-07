@@ -1,5 +1,6 @@
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Mod;
@@ -163,14 +164,14 @@ public class EditDatabaseValues(
 
         // We access the backpacks dictionary by key directly using square brackets, we use ItemTpl to get the items ID
         // Alternately, we could have typed backPacks["59e763f286f7742ee57895da"] and done the same thing, ItemTpl makes it easier to read
-        backPacks[ItemTpl.BACKPACK_PILGRIM_TOURIST] = 999999;
+        backPacks.AddOrUpdate(ItemTpl.BACKPACK_PILGRIM_TOURIST, 999999);
 
 
         // Now lets make them always have an M4A1
         assaultBot.BotInventory.Equipment.TryGetValue(EquipmentSlots.FirstPrimaryWeapon, out var primaryWeapons);
 
         // We edit the weight value (pick chance) that is already there to be massive, making the item more likely to be picked
-        primaryWeapons[ItemTpl.ASSAULTRIFLE_COLT_M4A1_556X45_ASSAULT_RIFLE] = 999999;
+        primaryWeapons.AddOrUpdate(ItemTpl.ASSAULTRIFLE_COLT_M4A1_556X45_ASSAULT_RIFLE, 999999);
 
 
         // Now lets make them always have the first name of Gary
