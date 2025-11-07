@@ -1,5 +1,6 @@
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
@@ -68,7 +69,8 @@ public class EditConfigs(
         _hideoutConfig.OverrideBuildTimeSeconds = 60;
 
         // Let's edit the airdrop config to Make weapon/armor drops REALLY common
-        _airdropConfig.AirdropTypeWeightings[SptAirdropTypeEnum.weaponArmor] = 999;
+        // We can use the helper `AddOrUpdate`
+        _airdropConfig.AirdropTypeWeightings.AddOrUpdate(SptAirdropTypeEnum.weaponArmor, 999);
 
         // Let's edit the airdrop config to Make weapon/armor drops always have 3 sealed weapon crates
         // When accessing a dictionary, 'TryGetValue' is a safe way to do it, it will return true if it finds the key you want, or false if it doesn't
@@ -86,10 +88,10 @@ public class EditConfigs(
         _pmcChatResponseConfig.Killer.ResponseChancePercent = 100;
 
         // Let's make quest rewards sent to you via mail last for over a week for unheard profiles
-        _questConfig.MailRedeemTimeHours["unheard_edition"] = 168;
+        _questConfig.MailRedeemTimeHours.AddOrUpdate("unheard_edition", 168);
 
         // Let's make the interchange bot cap huge
-        _botConfig.MaxBotCap["interchange"] = 50;
+        _botConfig.MaxBotCap.AddOrUpdate("interchange", 50);
 
         // Let's disable loot on scavs
         _botConfig.DisableLootOnBotTypes.Add("assault");
