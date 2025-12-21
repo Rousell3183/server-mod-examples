@@ -1,6 +1,7 @@
 ﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
@@ -43,6 +44,16 @@ public class CustomStaticRouter(JsonUtil jsonUtil, CustomStaticRouterCallback cu
                     sessionId,
                     output
                 ) => await customStaticRouterCallback.HandleExampleStaticRoute(url, info, sessionId)
+            ),
+            // There are cases where you dont want to send data to the server, in that case you can ignore ExampleStaticRequestData and use EmptyRequestData
+            new RouteAction<EmptyRequestData>(
+                "/example/route/emptystatic",
+                async (
+                    url,
+                    info,
+                    sessionId,
+                    output
+                ) => await customStaticRouterCallback.HandleEmptyExampleStaticRoute(url, info, sessionId)
             )
         ])
 { }
@@ -53,6 +64,13 @@ public class CustomStaticRouter(JsonUtil jsonUtil, CustomStaticRouterCallback cu
 [Injectable]
 public class CustomStaticRouterCallback(ISptLogger<CustomStaticRouterCallback> logger, HttpResponseUtil httpResponseUtil)
 {
+    public ValueTask<string> HandleEmptyExampleStaticRoute(string url, EmptyRequestData info, MongoId sessionId)
+    {
+        // Your mods code goes here
+        logger.Info($"Callback on {url} route received!");
+        return new ValueTask<string>(httpResponseUtil.NullResponse());
+    }
+
     public ValueTask<string> HandleExampleStaticRoute(string url, ExampleStaticRequestData info, MongoId sessionId)
     {
         // Your mods code goes here
