@@ -35,7 +35,7 @@ public record ModMetadata : AbstractModMetadata
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
 // We want to load after PostDBModLoader is complete, so we set our type priority to that, plus 1.

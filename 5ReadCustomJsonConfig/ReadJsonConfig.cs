@@ -29,7 +29,7 @@ public record ModMetadata : AbstractModMetadata
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
 // We want to load after PreSptModLoader is complete, so we set our type priority to that, plus 1.
@@ -59,7 +59,7 @@ public class ReadJsonConfig(
 }
 
 // This class should represent your config structure
-public class ModConfig
+public record ModConfig
 {
-    public string ExampleProperty { get; set; }
+    public required string ExampleProperty { get; set; }
 }

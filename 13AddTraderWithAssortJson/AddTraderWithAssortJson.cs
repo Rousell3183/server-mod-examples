@@ -25,7 +25,7 @@ public record ModMetadata : AbstractModMetadata
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; } = "https://github.com/sp-tarkov/server-mod-examples";
     public override bool? IsBundleMod { get; init; } = false;
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
 /// <summary>

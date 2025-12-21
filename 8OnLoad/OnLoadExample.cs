@@ -27,7 +27,7 @@ public record ModMetadata : AbstractModMetadata
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
 // Check `OnLoadOrder` for list of possible choices

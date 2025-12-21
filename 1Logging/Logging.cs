@@ -72,7 +72,7 @@ public record ModMetadata : AbstractModMetadata
     /// <summary>
     /// What Licence does your mod use
     /// </summary>
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
 // We want to load after PreSptModLoader is complete, so we set our type priority to that, plus 1.
