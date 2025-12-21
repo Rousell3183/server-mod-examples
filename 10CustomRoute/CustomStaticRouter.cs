@@ -23,54 +23,47 @@ public record ModMetadata : AbstractModMetadata
     public override List<string>? Contributors { get; init; }
     public override SemanticVersioning.Version Version { get; init; } = new("1.0.0");
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
-    
-    
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
-    public override string? License { get; init; } = "MIT";
+    public override string License { get; init; } = "MIT";
 }
 
+/// <summary>
+///  This class registers a new static router in SPT, you can register as many routes as you want here
+/// </summary>
 [Injectable]
-public class CustomStaticRouter : StaticRouter
-{
-    private static HttpResponseUtil _httpResponseUtil;
-
-    public CustomStaticRouter(
-        JsonUtil jsonUtil,
-        HttpResponseUtil httpResponseUtil) : base(
-        jsonUtil,
-        // Add an array of routes we want to add
-        GetCustomRoutes()
-    )
-    {
-        _httpResponseUtil = httpResponseUtil;
-    }
-
-    private static List<RouteAction> GetCustomRoutes()
-    {
-        return
-        [
-            new RouteAction(
+public class CustomStaticRouter(JsonUtil jsonUtil, CustomStaticRouterCallback customStaticRouterCallback) : StaticRouter(jsonUtil, [
+            new RouteAction<ExampleStaticRequestData>(
                 "/example/route/static",
                 async (
                     url,
                     info,
                     sessionId,
                     output
-                ) => await HandleRoute(url, info as ExampleStaticRequestData, sessionId)
+                ) => await customStaticRouterCallback.HandleExampleStaticRoute(url, info, sessionId)
             )
-        ];
-    }
+        ])
+{ }
 
-    private static ValueTask<string> HandleRoute(string url, ExampleStaticRequestData info, MongoId sessionId)
+/// <summary>
+/// This class handles callbacks that are sent to your route, you can run code both synchronously here as well as asynchronously
+/// </summary>
+[Injectable]
+public class CustomStaticRouterCallback(ISptLogger<CustomStaticRouterCallback> logger, HttpResponseUtil httpResponseUtil)
+{
+    public ValueTask<string> HandleExampleStaticRoute(string url, ExampleStaticRequestData info, MongoId sessionId)
     {
         // Your mods code goes here
-
-        return new ValueTask<string>(_httpResponseUtil.NullResponse());
+        logger.Info($"Callback on {url} route received!");
+        return new ValueTask<string>(httpResponseUtil.NullResponse());
     }
 }
-public class ExampleStaticRequestData : IRequestData
+
+/// <summary>
+/// This record represents your incoming data model, any data you are sending to the server you will need to have in here.
+/// </summary>
+public record ExampleStaticRequestData : IRequestData
 {
 }
