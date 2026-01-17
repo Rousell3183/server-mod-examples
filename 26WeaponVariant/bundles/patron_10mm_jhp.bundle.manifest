@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 3490885290
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5ff487cc3354b5d35224fbc9f1cccc94
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c301284653a4a6cfebd82b345c98d194
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 5ff487cc3354b5d35224fbc9f1cccc94
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0e88583c408674d4bad1d52c226ee09a, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: PreviewPivot/IconSettings
+Assets:
+- Assets/10mm/10mmAmmo.prefab
+Dependencies:
+- F:/EscapeFromTarkov-SDK/AssetBundles/StandaloneWindows/shaders
